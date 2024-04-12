@@ -13,8 +13,8 @@ const __dirname = path.resolve();
 const PORT = 3000
 // middleware
 app.use(cors());
-app.use(express.json());
 app.use(express.static(path.join(__dirname, '/projects-router/dist')))
+app.use(express.json());
 app.use(cookieParser());
 
 app.get("*", (req, res) => {
