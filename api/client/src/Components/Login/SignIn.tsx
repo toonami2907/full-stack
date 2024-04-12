@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom"
 import { signInStart, signInFailure, signInSuccess } from "../../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { OAuth } from "../OAuth";
+import { RootState } from '../../redux/store'
 
 export const SignIn = () => {
     const [formData, setFormData] = useState({});
-    const { loading, error } = useSelector((state) => state.user);
+    const { loading, error } = useSelector((state: RootState) => state.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -33,7 +34,7 @@ export const SignIn = () => {
             dispatch(signInSuccess(data));
             navigate('/');
         } catch (error) {
-            dispatch(signInFailure(error));
+            dispatch(signInFailure({ message: 'Error message here' }));
         }
     }
 
@@ -45,12 +46,16 @@ export const SignIn = () => {
                     <input type="email" id="email" onChange={handleChange} placeholder="Email" className="bg-slate-100 rounded-lg w-[300px] lg:w-[70%] p-3 " />
                     <input type="Password" onChange={handleChange} id="password" placeholder="Password" className="bg-slate-100 rounded-lg w-[300px] lg:w-[70%] p-3 " />
                     <button className="p-3 bg-slate-900 w-[70%] disabled:bg-slate-700 rounded-lg text-white hover:bg-orange-600">  {loading ? 'Loading....' : 'SIGN IN'}</button>
-                    <OAuth/>
+                    <OAuth />
                     <Link className="text-lg mb-4" to='/SignUp'>Create an Account</Link>
                 </form>
-                <p className="text-red-700 mt-5 text-lg ">
-                    {error ? error.message || 'Something went wrong!' : ''}
+                <p className="text-red-700 mt-5 text-lg">
+                    {error && 'Something went wrong!'}
                 </p>
+
+
+
+
             </div>
         </div>
     )

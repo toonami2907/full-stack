@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
+import  {useEffect, useState} from 'react'
+
 
 
 const App = ({testimonials, interval =5000}) => {

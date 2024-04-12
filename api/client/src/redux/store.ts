@@ -8,6 +8,7 @@ import storage from 'redux-persist/lib/storage';
 const rootReducer = combineReducers({
     user: userReducer
 });
+export type RootState = ReturnType<typeof rootReducer>;
 const persistConfig = {
     key: 'root',
     version: 1,

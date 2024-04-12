@@ -6,7 +6,6 @@ import Layout from './Components/Layout';
 import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import { Slider } from './Components/Slider';
-import Product from './Components/Product';
 import Home from './Components/Home/Home'
 import { SignUp } from './Components/Sign-Up/Sign-Up';
 import { SignIn } from './Components/Login/SignIn';
@@ -31,7 +30,6 @@ if (rootElement) {
               <Route path="SignIn" element={<SignIn />} />
               <Route element={<PrivateRoute />}>
                 <Route path="Profile" element={<Profile />} />
-                <Route path="Cart" element={<Product />} />
               </Route>
               <Route path="Github" element={<Slider />}>
                 <Route path=":userid" element={<Slider />} />

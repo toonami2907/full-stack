@@ -23,16 +23,16 @@ export default function AnotherHeader() {
                 </Link>
                 <ul className="flex space-x-6">
                     <li>
-                        <NavLink to="/" activeClassName="border-b-2 border-white">Home</NavLink>
+                        <NavLink to="/" className="border-b-2 border-white">Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/about" activeClassName="border-b-2 border-white">About</NavLink>
+                        <NavLink to="/about" className="border-b-2 border-white">About</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/services" activeClassName="border-b-2 border-white">Services</NavLink>
+                        <NavLink to="/services" className="border-b-2 border-white">Services</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/contact" activeClassName="border-b-2 border-white">Contact</NavLink>
+                        <NavLink to="/contact" className="border-b-2 border-white">Contact</NavLink>
                     </li>
                 </ul>
                 <div>
