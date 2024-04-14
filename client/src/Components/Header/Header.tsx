@@ -1,7 +1,8 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
 import { Menu } from "lucide-react";
 import { Link } from 'react-router-dom';
+import { signOut } from '../../redux/user/userSlice';
 
 
 interface User {
@@ -17,6 +18,15 @@ interface RootState {
 
 export default function AnotherHeader() {
     const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch();
+    const handleSignOut = async () => {
+      try {
+        await fetch('/api/User/SignOut');
+        dispatch(signOut())
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
     const toggleMenu = () => {
       setIsOpen(!isOpen);
@@ -50,15 +60,17 @@ export default function AnotherHeader() {
                 <a href="#" className="menu-item block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
               </li>
               {currentUser ? (
-                    <Link to="/profile" className="text-gray-200 hover:text-gray-400 mr-4">Profile</Link>
+                    <Link to="/profile"  className="menu-item block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Profile</Link>
                 ) : (
-                    <Link to="/signin" className="text-gray-200 hover:text-gray-400 mr-4">Sign in</Link>
+                    <Link to="/signin"  className="menu-item block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign in</Link>
                 )}
                 {currentUser ? (
-                    <Link to="/signout" className="text-gray-200 hover:text-gray-400">Sign out</Link>
-                ) : (
-                    <Link to="/signup" className="text-gray-200 hover:text-gray-400">Sign up</Link>
-                )}
+                    <span onClick={handleSignOut} className="menu-item block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign out</span>
+                ) 
+                : (
+                  <Link to="/signup"  className="menu-item block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign up</Link>
+                )
+                }
             </ul>
           </div>
         </div>
