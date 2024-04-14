@@ -8,12 +8,12 @@ import userRoute from './routes/User.route.js'
 import cookieParser from 'cookie-parser';
 import productRoute from './routes/Product.route.js'
 const app = express();
-config();
 // const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.resolve();
 console.log(__dirname)
 const PORT = 3000
 // middleware
+config();
 app.use(cors());
 app.use(express.static(path.join(__dirname, '/client/dist')))
 app.use(express.json());
